@@ -1,20 +1,21 @@
 CREATE DATABASE bd_vuelosMexico;
-
+GO
 USE bd_vuelosMexico;
-
+GO
 CREATE TABLE Aerolineas(
 IdAerolinea INTEGER NOT NULL,
-NombreAerolinea VARCHAR NOT NULL,
+NombreAerolinea VARCHAR(20) NOT NULL,
 CONSTRAINT pk_aerolinea PRIMARY KEY (IdAerolinea)
 );
 GO
 INSERT INTO Aerolineas VALUES (1, 'Volaris')
 GO
+INSERT Aerolineas VALUES(2, 'Interjet'), (3, 'Aeromar'),(4, 'Aeromexico');
 SELECT*FROM Aerolineas;
 
 CREATE TABLE Aeropuertos(
 IdAeropuerto INTEGER NOT NULL,
-NombreAeropuerto VARCHAR NOT NULL,
+NombreAeropuerto VARCHAR(30)  NOT NULL,
 CONSTRAINT pk_aeropuerto PRIMARY KEY (IdAeropuerto)
 );
 GO
@@ -32,10 +33,6 @@ Descripcion VARCHAR (10) NOT NULL,
 CONSTRAINT pk_movimiento PRIMARY KEY (IdMovimiento)
 );
 GO
-INSERT INTO Movimientos( Descripcion)---NOMBRES DE CAMPOS SOBRE LOS QUE SE VA A INSERTAR
-VALUES ('Salida');
-GO
-
 INSERT Movimientos
 VALUES (1, 'Salida'),
 	   (2, 'Llegada');
@@ -54,4 +51,14 @@ CONSTRAINT fk_aeropuerto FOREIGN KEY (IdAeropuerto)REFERENCES Aeropuertos (IdAer
 CONSTRAINT fk_movimiento FOREIGN KEY (IdMovimiento)REFERENCES Movimientos (IdMovimiento)
 );
 GO
+INSERT Vuelos VALUES(1, 1,1,1,'2019-01-01')
+GO
+INSERT Vuelos VALUES(2, 2,1,1,'2019-01-01'),
+					(3, 3,2,2,'2019-01-01'),
+					(4, 4,3,2,'2019-02-01'),
+					(5, 1,3,2,'2019-02-01'),
+					(6, 2,3,1,'2019-02-01'),
+					(7, 3,4,1,'2019-02-01'),
+					(8, 3,4,1,'2019-03-01');
+
 SELECT * FROM Vuelos;
